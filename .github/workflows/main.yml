@@ -41,6 +41,6 @@ jobs:
           DB2INSTANCE: db2inst1
           DB2INST1_PASSWORD: password
           DBNAME: testdb
-        options: --privileged=true
+        options: --privileged=true --health-cmd "sudo -u db2inst1 db2 get connection state" --health-interval 5s --health-timeout 5s --health-retries 12
         ports:
           - 50000:50000
