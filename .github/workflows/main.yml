@@ -12,7 +12,10 @@ jobs:
     - name: Get DB2 Database State
       run: |
         docker exec ${{ job.services.ibm_db2.id }} \
-        su - db2inst1 -c 'db2 get database state'
+        su - db2inst1 -c 'db2 get database state' ||\
+        sleep 60 &&\
+        docker exec ${{ job.services.ibm_db2.id }} \
+        su - db2inst1 -c 'db2 get database state'\
 
     - name: Setup python
       uses: actions/setup-python@v3
@@ -38,6 +41,6 @@ jobs:
           DB2INSTANCE: db2inst1
           DB2INST1_PASSWORD: password
           DBNAME: testdb
-        options: --privileged=true --health-cmd "sudo -u db2inst1 db2 get database state" --health-interval 10s --health-timeout 5s --health-retries 12
+        options: --privileged=true
         ports:
           - 50000:50000
