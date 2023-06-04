@@ -11,15 +11,15 @@ sock.close()
 
 db2_config = "ibm_db_sa://{}:{}@{}:{}/{}".format(
         "DB2INST1",
-        "password",
+        "localhost",
         "ibm_db2",
         "50000",
-        "DB2INST1",
+        "TESTDB",
     )        
 
 engine = sqlalchemy.create_engine(db2_config)
 
 with engine.connect() as connection:
-    result = connection.execute(sqlalchemy.text("select * from staff"))
+    result = connection.execute(sqlalchemy.text("select * from sysibm.systables"))
     for row in result:
         print(row)
