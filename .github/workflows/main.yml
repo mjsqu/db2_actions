@@ -14,7 +14,7 @@ jobs:
         docker exec ${{ job.services.ibm_db2.id }} \
         su - db2inst1 -c '\
         . ~/sqllib/db2profile &&\
-        db2 get connection state'"
+        db2 get connection state'
 
     - name: Setup python
       uses: actions/setup-python@v3
