@@ -15,6 +15,8 @@ jobs:
         pip install --upgrade pip
         pip install sqlalchemy
         pip install ibm_db_sa
+    - name: Checkout
+      uses: actions/checkout@v3.5.2
     - name: Run Query
       run: |
         python run_db2_query.py
