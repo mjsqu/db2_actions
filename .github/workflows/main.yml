@@ -1,7 +1,7 @@
 name: DB2 Image
 
 on:
- workflow_dispatch:
+ push:
 
 
 jobs:
@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.9
     steps:
+    - name: "Create temporary tablespace"
+      run: "docker exec ${{ job.services.ibm_db2.id }} su - db2inst1 -c 'db2 list database directory'"
     - name: Install sqlalchemy, ibm_db_sa
       run: |
         pip install --upgrade pip
@@ -32,4 +34,4 @@ jobs:
           DBNAME: testdb
         options: "--privileged=true"
         ports:
-          - "50000:50000"
+          - 50000:50000
