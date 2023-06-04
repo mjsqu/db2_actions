@@ -11,8 +11,8 @@ sock.close()
 
 db2_config = "ibm_db_sa://{}:{}@{}:{}/{}".format(
         "DB2INST1",
+        "password",
         "localhost",
-        "ibm_db2",
         "50000",
         "TESTDB",
     )        
