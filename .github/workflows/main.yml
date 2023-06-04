@@ -8,12 +8,15 @@ jobs:
   build:
   
     runs-on: ubuntu-latest
-    container: python:3.9
     steps:
+    - name: Setup python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
     - name: Test network
       run: |
        sleep 60
-       curl 127.0.0.1:50000
+       curl ibm_db2:50000 || curl localhost:50000 || curl 127.0.0.1:50000
     - name: Install sqlalchemy, ibm_db_sa
       run: |
         pip install --upgrade pip
