@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.9
     steps:
+    - name: Test network
+      run: |
+       curl localhost:50000
+       curl ibm_db2:50000
     - name: Install sqlalchemy, ibm_db_sa
       run: |
         pip install --upgrade pip
