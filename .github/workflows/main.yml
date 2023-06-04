@@ -9,6 +9,9 @@ jobs:
   
     runs-on: ubuntu-latest
     steps:
+    - name: Create DB2 Sample Database
+      run: "docker exec ${{ job.services.ibm_db2.id }} su - db2inst1 -c 'db2sampl -force -sql'"
+
     - name: Setup python
       uses: actions/setup-python@v3
       with:
