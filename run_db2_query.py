@@ -8,7 +8,7 @@ db2_config = "ibm_db_sa://{}:{}@{}:{}/{}".format(
         "DB2INST1",
     )        
 
-engine = create_engine(db2_config)
+engine = sqlalchemy.create_engine(db2_config)
 
 with engine.connect() as connection:
     result = connection.execute(sqlalchemy.text("select * from staff"))
