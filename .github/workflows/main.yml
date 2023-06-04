@@ -12,8 +12,7 @@ jobs:
     steps:
     - name: Test network
       run: |
-       curl localhost:50000
-       curl ibm_db2:50000
+       curl 127.0.0.1:50000
     - name: Install sqlalchemy, ibm_db_sa
       run: |
         pip install --upgrade pip
