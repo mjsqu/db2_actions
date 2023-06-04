@@ -17,7 +17,7 @@ jobs:
     - name: Get DB2 Database State
       run: >-
         docker exec ${{ job.services.ibm_db2.id }} 
-        su - db2inst1 -c 'db2 get database state'
+        su - db2inst1 -c 'db2 get connection state'
 
     - name: Setup python
       uses: actions/setup-python@v3
