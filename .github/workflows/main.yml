@@ -41,7 +41,7 @@ jobs:
           DB2INSTANCE: db2inst1
           DB2INST1_PASSWORD: password
           DBNAME: testdb
-        options: >
+        options: >-
           --privileged=true
           --health-cmd "sudo -u db2inst1 db2 get connection state"
           --health-interval 30s
