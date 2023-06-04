@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Get DB2 Database State
-      run: "docker exec ${{ job.services.ibm_db2.id }} su - db2inst1 -c '/opt/ibm/db2/V11.5/bin/db2 get connection state'"
+      run: |
+        docker exec ${{ job.services.ibm_db2.id }} \
+        su - db2inst1 -c '\
+        . ~/sqllib/db2profile &&\
+        db2 get connection state'"
 
     - name: Setup python
       uses: actions/setup-python@v3
