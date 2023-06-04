@@ -9,12 +9,8 @@ jobs:
   
     runs-on: ubuntu-latest
     steps:
-    - name: Wait for DB2
-      run: sleep 60
-    - name: List Container db2 binaries
-      run: "docker exec ${{ job.services.ibm_db2.id }} su - db2inst1 -c 'ls -l /opt/ibm/db2/V11.5/bin'"
-    - name: Create DB2 Sample Database
-      run: "docker exec ${{ job.services.ibm_db2.id }} su - db2inst1 -c '/opt/ibm/db2/V11.5/bin/db2sampl -force -sql'"
+    - name: Get DB2 Database State
+      run: "docker exec ${{ job.services.ibm_db2.id }} su - db2inst1 -c '/opt/ibm/db2/V11.5/bin/db2 get connection state'"
 
     - name: Setup python
       uses: actions/setup-python@v3
